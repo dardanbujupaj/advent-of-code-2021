@@ -9,13 +9,7 @@ struct School {
 }
 
 impl School {
-    fn new() -> Self {
-        School {
-            day: 0,
-            ages: [0; NEW_DAYS],
-        }
-    }
-
+    /// Create new School struct by parsting the input string
     fn parse(input: String) -> Self {
         let fishes = input.split(",");
 
@@ -30,6 +24,7 @@ impl School {
         School { day: 0, ages }
     }
 
+    /// Simulate one day
     pub fn iterate(&mut self) {
         self.day += 1;
 
@@ -61,9 +56,10 @@ impl Display for School {
     }
 }
 
+/// Run Simulation for day 6 'lanternfish' of Advent of Code
 /// https://adventofcode.com/2021/day/6
 pub fn lanternfish(input: String) {
-    println!("Simulating lanternfish");
+    println!("Simulating lanternfish...");
     println!("Input: {}", input);
     let mut school = School::parse(input);
     println!("{}", school);
@@ -87,17 +83,14 @@ mod tests {
 
     #[test]
     fn test_count() {
-        let s = School {
-            day: 0,
-            ages: [5; NEW_DAYS],
-        };
-
-        assert_eq!(s.count(), NEW_DAYS * 5)
+        let input = "0,1,1,2,2,2,3,3,3,3".to_string();
+        let s = School::parse(input);
+        assert_eq!(s.count(), 10);
     }
 
     #[test]
     fn test_iterate_days() {
-        let mut s = School::new();
+        let mut s = School::parse("1".to_string());
         assert_eq!(s.day, 0);
 
         s.iterate();
@@ -122,7 +115,6 @@ mod tests {
 
         assert_eq!(s.count(), 2);
     }
-
 
     #[test]
     fn test_parse_input() {
@@ -149,7 +141,6 @@ mod tests {
             s.iterate();
         }
 
-        assert_eq!(s.count(), );
-
+        assert_eq!(s.count(), 5934);
     }
 }
