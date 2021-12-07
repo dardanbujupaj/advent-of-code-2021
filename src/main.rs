@@ -1,10 +1,12 @@
 use clap::Parser;
 
+mod binary_diagnostic;
 mod dive;
 mod lanternfish;
 mod sonar_sweep;
 mod whale;
 
+use binary_diagnostic::binary_diagnostic;
 use dive::dive;
 use lanternfish::lanternfish;
 use sonar_sweep::sonar_sweep;
@@ -23,6 +25,7 @@ fn main() {
     match opts.day {
         1 => sonar_sweep(opts.input),
         2 => dive(opts.input),
+        3 => binary_diagnostic(opts.input),
         6 => lanternfish(opts.input),
         7 => whale(opts.input),
         _ => unimplemented!(),
