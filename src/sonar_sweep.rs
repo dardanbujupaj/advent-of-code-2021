@@ -70,6 +70,6 @@ mod tests {
 
     #[test]
     fn test_windowed() {
-        assert_eq!(windowed(&vec![2, 2, 1, 1], 2), vec![4, 3, 2]);
+        assert_eq!(windowed(&[2, 2, 1, 1], 2), vec![4, 3, 2]);
     }
 }

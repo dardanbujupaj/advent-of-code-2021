@@ -71,7 +71,3 @@ impl BitCounter {
       usize::from_str_radix(&epsilon, 2).unwrap()
     }
 }
-
-fn count_occurences_per_bit(entries: &[&str]) -> Vec<usize> {
-    vec![]
-}

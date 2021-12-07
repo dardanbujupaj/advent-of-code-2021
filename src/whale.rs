@@ -111,14 +111,14 @@ mod tests {
 
     #[test]
     fn test_average() {
-        assert_eq!(average(&vec![0, 1, 2]), 1.0)
+        assert_eq!(average(&[0, 1, 2]), 1.0)
     }
 
     #[test]
     fn test_median() {
-        assert_eq!(median(&vec![0, 1, 2]), 1.0);
-        assert_eq!(median(&vec![0, 2, 2]), 2.0);
-        assert_eq!(median(&vec![1, 2]), 1.5);
-        assert_eq!(median(&vec![0, 2]), 1.0);
+        assert_eq!(median(&[0, 1, 2]), 1.0);
+        assert_eq!(median(&[0, 2, 2]), 2.0);
+        assert_eq!(median(&[1, 2]), 1.5);
+        assert_eq!(median(&[0, 2]), 1.0);
     }
 }
