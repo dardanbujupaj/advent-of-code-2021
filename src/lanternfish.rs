@@ -11,12 +11,12 @@ struct School {
 impl School {
     /// Create new School struct by parsting the input string
     fn parse(input: String) -> Self {
-        let fishes = input.split(",");
+        let fishes = input.split(',');
 
         let mut ages = [0; NEW_DAYS];
 
         for age_str in fishes {
-            let age = usize::from_str_radix(age_str, 10).unwrap();
+            let age = age_str.parse::<usize>().unwrap();
 
             ages[age] += 1;
         }
@@ -29,10 +29,11 @@ impl School {
         self.day += 1;
 
         let mut new_ages = [0; NEW_DAYS];
-        for i in 1..NEW_DAYS {
-            new_ages[i - 1] = self.ages[i]
-        }
 
+        // copy and shift fished
+        new_ages[..(NEW_DAYS - 1)].clone_from_slice(&self.ages[1..NEW_DAYS]);
+
+        // handle reproducing fishes
         new_ages[CYCLE_DAYS - 1] += self.ages[0];
         new_ages[NEW_DAYS - 1] += self.ages[0];
 
