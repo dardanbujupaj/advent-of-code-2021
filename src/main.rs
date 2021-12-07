@@ -1,9 +1,11 @@
 use clap::Parser;
 
+mod dive;
 mod lanternfish;
 mod sonar_sweep;
 mod whale;
 
+use dive::dive;
 use lanternfish::lanternfish;
 use sonar_sweep::sonar_sweep;
 use whale::whale;
@@ -20,6 +22,7 @@ fn main() {
 
     match opts.day {
         1 => sonar_sweep(opts.input),
+        2 => dive(opts.input),
         6 => lanternfish(opts.input),
         7 => whale(opts.input),
         _ => unimplemented!(),
