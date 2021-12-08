@@ -168,15 +168,6 @@ mod tests {
     use super::*;
 
     #[test]
-    fn test_parse_sequence() {
-        let sequence = "gecf egdcabf bgf bfgea";
-
-        let expected = vec![4, 8, 7, u8::MAX];
-
-        //assert_eq!(parse_sequence(sequence), expected);
-    }
-
-    #[test]
     fn test_parse_entry() {
         let entry_sequence =
             "acedgfb cdfbe gcdfa fbcad dab cefabd cdfgeb eafb cagedb ab | cdfeb fcadb cdfeb cdbaf";
@@ -195,5 +186,14 @@ mod tests {
                 .to_string();
 
         assert_eq!(part_1(&entry_sequence), 0);
+    }
+
+    #[test]
+    fn test_part_2() {
+        let entry_sequence =
+            "acedgfb cdfbe gcdfa fbcad dab cefabd cdfgeb eafb cagedb ab | cdfeb fcadb cdfeb cdbaf"
+                .to_string();
+
+        assert_eq!(part_2(&entry_sequence), 5353);
     }
 }
