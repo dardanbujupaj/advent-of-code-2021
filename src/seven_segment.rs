@@ -1,10 +1,13 @@
+use std::collections::HashSet;
+
 pub fn seven_segment(input: String) {
     println!("Counting segments");
-    println!("Count 1,4,7,8 (Part 1): {}", part_1(input));
+    println!("Count 1,4,7,8 (Part 1): {}", part_1(&input));
+    println!("Sum up outputs (Part 2): {}", part_2(&input));
 }
 
 /// count 1, 4, 7, 8
-fn part_1(input: String) -> usize {
+fn part_1(input: &str) -> usize {
     let count: usize = input
         .lines()
         .map(Entry::parse)
@@ -13,6 +16,22 @@ fn part_1(input: String) -> usize {
                 .iter()
                 .filter(|x| vec![1, 4, 7, 8].contains(x))
                 .count()
+        })
+        .sum();
+
+    count
+}
+
+/// count 1, 4, 7, 8
+fn part_2(input: &str) -> usize {
+    let count: usize = input
+        .lines()
+        .map(Entry::parse)
+        .map(|e| {
+            e.output[0] as usize * 1000
+                + e.output[1] as usize * 100
+                + e.output[2] as usize * 10
+                + e.output[3] as usize
         })
         .sum();
 
@@ -28,24 +47,120 @@ struct Entry {
 impl Entry {
     pub fn parse(input: &str) -> Self {
         let input_output: Vec<&str> = input.split(" | ").collect();
-        let input = parse_sequence(input_output[0]);
-        let output = parse_sequence(input_output[1]);
+        let segment = Segment::from_input(input_output[0]);
+        let input = input_output[0]
+            .split_whitespace()
+            .map(|seq| segment.parse_value(seq))
+            .collect();
+        let output = input_output[1]
+            .split_whitespace()
+            .map(|seq| segment.parse_value(seq))
+            .collect();
 
         Entry { input, output }
     }
 }
 
-fn parse_sequence(input: &str) -> Vec<u8> {
-    input
-        .split_whitespace()
-        .map(|d| match d.chars().count() {
-            2 => 1,
-            4 => 4,
-            3 => 7,
-            7 => 8,
-            _ => u8::MAX,
-        })
-        .collect()
+#[derive(Debug)]
+struct Segment {
+    segments: Vec<HashSet<char>>,
+}
+
+impl Segment {
+    fn from_input(input: &str) -> Segment {
+        let segment_sequences: Vec<HashSet<char>> = input
+            .split_whitespace()
+            .map(|seq| seq.chars().collect())
+            .collect();
+
+        let mut segments = vec![HashSet::new(); 10];
+
+        segments[1] = segment_sequences
+            .iter()
+            .find(|s| s.len() == 2)
+            .unwrap()
+            .clone();
+        segments[4] = segment_sequences
+            .iter()
+            .find(|s| s.len() == 4)
+            .unwrap()
+            .clone();
+        segments[7] = segment_sequences
+            .iter()
+            .find(|s| s.len() == 3)
+            .unwrap()
+            .clone();
+        segments[8] = segment_sequences
+            .iter()
+            .find(|s| s.len() == 7)
+            .unwrap()
+            .clone();
+
+        segments[3] = segment_sequences
+            .iter()
+            .find(|s| s.len() == 5 && s.is_superset(&segments[1]) && s.is_superset(&segments[7]))
+            .unwrap()
+            .clone();
+
+        segments[9] = segment_sequences
+            .iter()
+            .find(|s| s.len() == 6 && s.is_superset(&segments[3]))
+            .unwrap()
+            .clone();
+
+        segments[0] = segment_sequences
+            .iter()
+            .find(|s| {
+                s.len() == 6
+                    && s.is_subset(&segments[8])
+                    && s.is_superset(&segments[7])
+                    && s.symmetric_difference(&segments[9]).count() != 0
+            })
+            .unwrap()
+            .clone();
+
+        segments[6] = segment_sequences
+            .iter()
+            .find(|s| {
+                s.len() == 6
+                    && s.symmetric_difference(&segments[0]).count() != 0
+                    && s.symmetric_difference(&segments[9]).count() != 0
+            })
+            .unwrap()
+            .clone();
+
+        segments[5] = segment_sequences
+            .iter()
+            .find(|s| s.len() == 5 && s.is_subset(&segments[6]))
+            .unwrap()
+            .clone();
+
+        segments[2] = segment_sequences
+            .iter()
+            .find(|s| {
+                s.len() == 5
+                    && s.symmetric_difference(&segments[3]).count() != 0
+                    && s.symmetric_difference(&segments[5]).count() != 0
+            })
+            .unwrap()
+            .clone();
+
+        Segment { segments }
+    }
+
+    fn parse_value(&self, input: &str) -> u8 {
+        let charset: HashSet<char> = input.chars().collect();
+
+        for (i, el) in self.segments.iter().enumerate() {
+            if el.symmetric_difference(&charset).count() == 0 {
+                return i as u8;
+            }
+        }
+
+        println!("{:?} not fount in segment {:?}", charset, self.segments);
+
+        u8::MAX
+    }
 }
 
 #[cfg(test)]
@@ -58,27 +173,16 @@ mod tests {
 
         let expected = vec![4, 8, 7, u8::MAX];
 
-        assert_eq!(parse_sequence(sequence), expected);
+        //assert_eq!(parse_sequence(sequence), expected);
     }
 
     #[test]
     fn test_parse_entry() {
         let entry_sequence =
-            "aecbfdg fbg gf bafeg dbefa fcge gcbea fcaegb dgceab fcbdga | gecf egdcabf bgf bfgea";
+            "acedgfb cdfbe gcdfa fbcad dab cefabd cdfgeb eafb cagedb ab | cdfeb fcadb cdfeb cdbaf";
         let expected_entry = Entry {
-            input: vec![
-                8,
-                7,
-                1,
-                u8::MAX,
-                u8::MAX,
-                4,
-                u8::MAX,
-                u8::MAX,
-                u8::MAX,
-                u8::MAX,
-            ],
-            output: vec![4, 8, 7, u8::MAX],
+            input: vec![8, 5, 2, 3, 7, 9, 6, 4, 0, 1],
+            output: vec![5, 3, 5, 3],
         };
 
         assert_eq!(Entry::parse(entry_sequence), expected_entry);
@@ -87,9 +191,9 @@ mod tests {
     #[test]
     fn test_part_1() {
         let entry_sequence =
-            "aecbfdg fbg gf bafeg dbefa fcge gcbea fcaegb dgceab fcbdga | gecf egdcabf bgf bfgea"
+            "acedgfb cdfbe gcdfa fbcad dab cefabd cdfgeb eafb cagedb ab | cdfeb fcadb cdfeb cdbaf"
                 .to_string();
 
-        assert_eq!(part_1(entry_sequence), 3);
+        assert_eq!(part_1(&entry_sequence), 0);
     }
 }
