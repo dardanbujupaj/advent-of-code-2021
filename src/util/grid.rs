@@ -61,7 +61,7 @@ mod tests {
 
     #[test]
     fn test_get() {
-        let mut grid = Grid {
+        let grid = Grid {
             data: vec![1, 2, 3, 4],
             width: 2,
             height: 2,

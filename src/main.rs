@@ -1,22 +1,8 @@
 use clap::Parser;
 
-mod util;
-
-mod binary_diagnostic;
-mod dive;
-mod hydrothermal_venture;
-mod lanternfish;
-mod seven_segment;
-mod sonar_sweep;
-mod whale;
-
-use binary_diagnostic::binary_diagnostic;
-use dive::dive;
-use hydrothermal_venture::hydrothermal_venture;
-use lanternfish::lanternfish;
-use seven_segment::seven_segment;
-use sonar_sweep::sonar_sweep;
-use whale::whale;
+use advent_of_code_2021::puzzles::{
+    binary_diagnostic, dive, hydrothermal_venture, lanternfish, seven_segment, sonar_sweep, whale,
+};
 
 #[derive(Parser)]
 #[clap(author = "Dardan Bujupaj")]

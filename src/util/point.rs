@@ -7,6 +7,10 @@ pub struct Point {
 }
 
 impl Point {
+    pub fn default() -> Point {
+        Point::new()
+    }
+
     pub fn new() -> Point {
         Point { x: 0, y: 0 }
     }
