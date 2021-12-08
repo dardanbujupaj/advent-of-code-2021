@@ -3,12 +3,14 @@ use clap::Parser;
 mod binary_diagnostic;
 mod dive;
 mod lanternfish;
+mod seven_segment;
 mod sonar_sweep;
 mod whale;
 
 use binary_diagnostic::binary_diagnostic;
 use dive::dive;
 use lanternfish::lanternfish;
+use seven_segment::seven_segment;
 use sonar_sweep::sonar_sweep;
 use whale::whale;
 
@@ -28,6 +30,7 @@ fn main() {
         3 => binary_diagnostic(opts.input),
         6 => lanternfish(opts.input),
         7 => whale(opts.input),
+        8 => seven_segment(opts.input),
         _ => unimplemented!(),
     }
 }

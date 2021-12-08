@@ -4,7 +4,7 @@ pub fn binary_diagnostic(input: String) {
     let mut counter = BitCounter::new();
 
     for line in input.lines() {
-      counter.count(line);
+        counter.count(line);
     }
 
     println!("{:?}", counter);
@@ -29,7 +29,7 @@ impl BitCounter {
 
     fn count(&mut self, bits: &str) {
         if self.occurences.is_empty() {
-          println!("{}: {}", bits, bits.chars().count());
+            println!("{}: {}", bits, bits.chars().count());
             self.occurences = vec![0; bits.chars().count()];
         }
 
@@ -40,34 +40,33 @@ impl BitCounter {
                 self.occurences[i] += 1;
             }
         }
-
     }
 
     fn get_gamma(&self) -> usize {
-      let mut gamma = String::new();
-      
-      for i in 0..self.occurences.len() {
-        if self.occurences[i] > self.count / 2 {
-          gamma += "1";
-        } else {
-          gamma += "0";
-        }
-      }
+        let mut gamma = String::new();
 
-      usize::from_str_radix(&gamma, 2).unwrap()
+        for i in 0..self.occurences.len() {
+            if self.occurences[i] > self.count / 2 {
+                gamma += "1";
+            } else {
+                gamma += "0";
+            }
+        }
+
+        usize::from_str_radix(&gamma, 2).unwrap()
     }
 
     fn get_epsilon(&self) -> usize {
-      let mut epsilon = String::new();
-      
-      for i in 0..self.occurences.len() {
-        if self.occurences[i] <= self.count / 2 {
-          epsilon += "1";
-        } else {
-          epsilon += "0";
-        }
-      }
+        let mut epsilon = String::new();
 
-      usize::from_str_radix(&epsilon, 2).unwrap()
+        for i in 0..self.occurences.len() {
+            if self.occurences[i] <= self.count / 2 {
+                epsilon += "1";
+            } else {
+                epsilon += "0";
+            }
+        }
+
+        usize::from_str_radix(&epsilon, 2).unwrap()
     }
 }
