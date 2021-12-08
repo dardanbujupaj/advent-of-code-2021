@@ -7,22 +7,18 @@ pub struct Point {
 }
 
 impl Point {
-    pub fn default() -> Point {
-        Point::new()
-    }
-
-    pub fn new() -> Point {
-        Point { x: 0, y: 0 }
+    pub fn new() -> Self {
+        Self { x: 0, y: 0 }
     }
 
     pub fn at(x: isize, y: isize) -> Point {
-        Point { x, y }
+        Self { x, y }
     }
 
     pub fn parse(input: &str) -> Point {
         let values: Vec<isize> = input.split(',').map(|p| p.parse().unwrap()).collect();
 
-        Point {
+        Self {
             x: values[0],
             y: values[1],
         }
@@ -33,7 +29,7 @@ impl Add for Point {
     type Output = Point;
 
     fn add(self, rhs: Self) -> Self::Output {
-        Point {
+        Self {
             x: self.x + rhs.x,
             y: self.y + rhs.y,
         }
@@ -44,6 +40,12 @@ impl AddAssign for Point {
     fn add_assign(&mut self, rhs: Self) {
         self.x += rhs.x;
         self.y += rhs.y;
+    }
+}
+
+impl Default for Point {
+    fn default() -> Self {
+        Self::new()
     }
 }
 
