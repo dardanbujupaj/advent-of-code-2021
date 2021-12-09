@@ -1,6 +1,6 @@
 use std::ops::{Add, AddAssign};
 
-#[derive(Debug, PartialEq, Eq, Clone, Copy)]
+#[derive(Debug, PartialEq, Eq, Clone, Copy, Hash)]
 pub struct Point {
     pub x: isize,
     pub y: isize,

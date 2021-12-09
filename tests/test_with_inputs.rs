@@ -1,7 +1,8 @@
 use std::{env, fs};
 
 use advent_of_code_2021::puzzles::{
-    binary_diagnostic, dive, hydrothermal_venture, lanternfish, seven_segment, sonar_sweep, whale,
+    binary_diagnostic, dive, hydrothermal_venture, lanternfish, seven_segment, smoke_basin,
+    sonar_sweep, whale,
 };
 
 // this tests check if all solutions run through (without panic) with the example and actual input
@@ -95,4 +96,16 @@ fn test_seven_segment_example_input() {
 fn test_seven_segment_input() {
     let input = read_input_file("seven_segment.txt");
     seven_segment(input);
+}
+
+#[test]
+fn test_smoke_basin_example_input() {
+    let input = read_input_file("smoke_basin_example.txt");
+    smoke_basin(input);
+}
+
+#[test]
+fn test_smoke_basin_input() {
+    let input = read_input_file("smoke_basin.txt");
+    smoke_basin(input);
 }

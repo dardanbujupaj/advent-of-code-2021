@@ -29,7 +29,6 @@ impl Line {
         let mut x = self.start.x;
         let mut y = self.start.y;
 
-        // TODO would be better to make x and y of point isize...
         let x_step = (self.end.x - self.start.x).signum();
         let y_step = (self.end.y - self.start.y).signum();
 

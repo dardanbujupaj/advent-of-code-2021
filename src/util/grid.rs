@@ -20,8 +20,24 @@ where
         }
     }
 
+    pub fn with_data(width: isize, height: isize, data: Vec<S>) -> Self {
+        Grid {
+            data,
+            width,
+            height,
+        }
+    }
+
     pub fn data(&self) -> &Vec<S> {
         &self.data
+    }
+
+    pub fn width(&self) -> isize {
+        self.width
+    }
+
+    pub fn height(&self) -> isize {
+        self.height
     }
 
     pub fn get(&self, x: isize, y: isize) -> S {
@@ -30,6 +46,28 @@ where
 
     pub fn set(&mut self, x: isize, y: isize, value: S) {
         self.data[(y * self.width + x) as usize] = value;
+    }
+
+    pub fn is_in_grid(&self, x: isize, y: isize) -> bool {
+        x >= 0 && x < self.width && y >= 0 && y < self.height
+    }
+
+    pub fn get_4_neighbours(&self, x: isize, y: isize) -> Vec<S> {
+        let mut neigbours = Vec::new();
+        if x > 0 {
+            neigbours.push(self.get(x - 1, y))
+        }
+        if x < self.width - 1 {
+            neigbours.push(self.get(x + 1, y))
+        }
+        if y > 0 {
+            neigbours.push(self.get(x, y - 1))
+        }
+        if y < self.height - 1 {
+            neigbours.push(self.get(x, y + 1))
+        }
+
+        neigbours
     }
 
     pub fn print(&self) {
