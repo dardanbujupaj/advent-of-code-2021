@@ -2,7 +2,7 @@ use std::{env, fs};
 
 use advent_of_code_2021::puzzles::{
     binary_diagnostic, dive, hydrothermal_venture, lanternfish, seven_segment, smoke_basin,
-    sonar_sweep, whale,
+    sonar_sweep, syntax_scoring, whale,
 };
 
 // this tests check if all solutions run through (without panic) with the example and actual input
@@ -108,4 +108,16 @@ fn test_smoke_basin_example_input() {
 fn test_smoke_basin_input() {
     let input = read_input_file("smoke_basin.txt");
     smoke_basin(input);
+}
+
+#[test]
+fn test_syntax_scoring_example_input() {
+    let input = read_input_file("syntax_scoring_example.txt");
+    syntax_scoring(input);
+}
+
+#[test]
+fn test_syntax_scoring_input() {
+    let input = read_input_file("syntax_scoring.txt");
+    syntax_scoring(input);
 }

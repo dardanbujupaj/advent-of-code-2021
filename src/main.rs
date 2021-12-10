@@ -2,7 +2,7 @@ use clap::Parser;
 
 use advent_of_code_2021::puzzles::{
     binary_diagnostic, dive, hydrothermal_venture, lanternfish, seven_segment, smoke_basin,
-    sonar_sweep, whale,
+    sonar_sweep, syntax_scoring, whale,
 };
 
 #[derive(Parser)]
@@ -24,6 +24,7 @@ fn main() {
         7 => whale(opts.input),
         8 => seven_segment(opts.input),
         9 => smoke_basin(opts.input),
+        10 => syntax_scoring(opts.input),
         _ => unimplemented!(),
     }
 }

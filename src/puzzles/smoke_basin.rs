@@ -17,11 +17,7 @@ fn part1(input: &str) -> usize {
         for y in 0..grid.height() {
             let value = grid.get(x, y);
 
-            if !grid
-                .get_4_neighbours(x, y)
-                .iter()
-                .any(|n| *n <= value)
-            {
+            if !grid.get_4_neighbours(x, y).iter().any(|n| *n <= value) {
                 lowpoints.push(value as usize + 1);
             }
         }
@@ -38,11 +34,7 @@ fn part2(input: &str) -> usize {
         for y in 0..grid.height() {
             let value = grid.get(x, y);
 
-            if !grid
-                .get_4_neighbours(x, y)
-                .iter()
-                .any(|n| *n <= value)
-            {
+            if !grid.get_4_neighbours(x, y).iter().any(|n| *n <= value) {
                 lowpoints.push(Point::at(x, y));
             }
         }
