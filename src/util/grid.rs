@@ -1,5 +1,7 @@
 use std::fmt::Display;
 
+use super::Point;
+
 #[derive(Debug, PartialEq, Eq)]
 pub struct Grid<S> {
     data: Vec<S>,
@@ -10,7 +12,6 @@ pub struct Grid<S> {
 impl<S> Grid<S>
 where
     S: Copy,
-    S: Display,
 {
     pub fn new(width: isize, height: isize, default: S) -> Self {
         Grid {
@@ -40,44 +41,64 @@ where
         self.height
     }
 
-    pub fn get(&self, x: isize, y: isize) -> S {
-        self.data[(y * self.width + x) as usize]
+    pub fn get(&self, position: Point) -> S {
+        self.data[(position.y * self.width + position.x) as usize]
     }
 
-    pub fn set(&mut self, x: isize, y: isize, value: S) {
-        self.data[(y * self.width + x) as usize] = value;
+    pub fn set(&mut self, position: Point, value: S) {
+        self.data[(position.y * self.width + position.x) as usize] = value;
     }
 
-    pub fn is_in_grid(&self, x: isize, y: isize) -> bool {
-        x >= 0 && x < self.width && y >= 0 && y < self.height
+    pub fn is_in_grid(&self, position: Point) -> bool {
+        position.x >= 0 && position.x < self.width && position.y >= 0 && position.y < self.height
     }
 
-    pub fn get_4_neighbours(&self, x: isize, y: isize) -> Vec<S> {
+    pub fn get_4_neighbours(&self, position: Point) -> Vec<S> {
         let mut neigbours = Vec::new();
-        if x > 0 {
-            neigbours.push(self.get(x - 1, y))
+        if position.x > 0 {
+            neigbours.push(self.get(position + Point::at(-1, 0)))
         }
-        if x < self.width - 1 {
-            neigbours.push(self.get(x + 1, y))
+        if position.x < self.width - 1 {
+            neigbours.push(self.get(position + Point::at(1, 0)))
         }
-        if y > 0 {
-            neigbours.push(self.get(x, y - 1))
+        if position.y > 0 {
+            neigbours.push(self.get(position + Point::at(0, -1)))
         }
-        if y < self.height - 1 {
-            neigbours.push(self.get(x, y + 1))
+        if position.y < self.height - 1 {
+            neigbours.push(self.get(position + Point::at(0, 1)))
         }
 
         neigbours
     }
 
-    pub fn print(&self) {
+    pub fn get_8_neighbours(&self, position: Point) -> Vec<Point> {
+        let mut neigbours = Vec::new();
+        for nx in (position.x - 1)..=(position.x + 1) {
+            for ny in (position.y - 1)..=(position.y + 1) {
+                let posn = Point::at(nx, ny);
+                if self.is_in_grid(posn) && !(nx == position.x && ny == position.y) {
+                    neigbours.push(posn)
+                }
+            }
+        }
+
+        neigbours
+    }
+}
+
+impl<S> Display for Grid<S>
+where
+    S: Display,
+    S: Copy,
+{
+    fn fmt(&self, f: &mut std::fmt::Formatter<'_>) -> std::fmt::Result {
         for y in 0..self.height {
             for x in 0..self.width {
-                print!("{}", self.get(x, y));
+                write!(f, "{}", self.get(Point::at(x, y)));
             }
-            println!();
+            writeln!(f);
         }
-        println!();
+        writeln!(f)
     }
 }
 
@@ -105,10 +126,10 @@ mod tests {
             height: 2,
         };
 
-        assert_eq!(grid.get(0, 0), 1);
-        assert_eq!(grid.get(1, 0), 2);
-        assert_eq!(grid.get(0, 1), 3);
-        assert_eq!(grid.get(1, 1), 4);
+        assert_eq!(grid.get(Point { x: 0, y: 0 }), 1);
+        assert_eq!(grid.get(Point { x: 1, y: 0 }), 2);
+        assert_eq!(grid.get(Point { x: 0, y: 1 }), 3);
+        assert_eq!(grid.get(Point { x: 1, y: 1 }), 4);
     }
 
     #[test]
@@ -119,7 +140,7 @@ mod tests {
             height: 2,
         };
 
-        grid.set(0, 0, 1);
+        grid.set(Point { x: 0, y: 0 }, 1);
         assert_eq!(
             grid,
             Grid {
@@ -128,7 +149,7 @@ mod tests {
                 height: 2
             }
         );
-        grid.set(1, 0, 2);
+        grid.set(Point { x: 1, y: 0 }, 2);
         assert_eq!(
             grid,
             Grid {
@@ -137,7 +158,7 @@ mod tests {
                 height: 2
             }
         );
-        grid.set(0, 1, 3);
+        grid.set(Point { x: 0, y: 1 }, 3);
         assert_eq!(
             grid,
             Grid {
@@ -146,7 +167,7 @@ mod tests {
                 height: 2
             }
         );
-        grid.set(1, 1, 4);
+        grid.set(Point { x: 1, y: 1 }, 4);
         assert_eq!(
             grid,
             Grid {

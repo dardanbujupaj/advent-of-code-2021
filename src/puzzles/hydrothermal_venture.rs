@@ -17,10 +17,10 @@ fn part1(input: &str) -> usize {
     let mut grid = Grid::new(1000, 1000, 0);
 
     for point in points {
-        grid.set(point.x, point.y, grid.get(point.x, point.y) + 1);
+        grid.set(point, grid.get(point) + 1);
     }
 
-    grid.print();
+    println!("{}", grid);
 
     grid.data().iter().filter(|v| **v >= 2).count()
 }
@@ -35,10 +35,10 @@ fn part2(input: &str) -> usize {
     let mut grid = Grid::new(1000, 1000, 0);
 
     for point in points {
-        grid.set(point.x, point.y, grid.get(point.x, point.y) + 1);
+        grid.set(point, grid.get(point) + 1);
     }
 
-    grid.print();
+    println!("{}", grid);
 
     grid.data().iter().filter(|v| **v >= 2).count()
 }

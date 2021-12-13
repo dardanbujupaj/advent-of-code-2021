@@ -15,9 +15,10 @@ fn part1(input: &str) -> usize {
 
     for x in 0..grid.width() {
         for y in 0..grid.height() {
-            let value = grid.get(x, y);
+            let position = Point::at(x, y);
+            let value = grid.get(position);
 
-            if !grid.get_4_neighbours(x, y).iter().any(|n| *n <= value) {
+            if !grid.get_4_neighbours(position).iter().any(|n| *n <= value) {
                 lowpoints.push(value as usize + 1);
             }
         }
@@ -32,10 +33,12 @@ fn part2(input: &str) -> usize {
 
     for x in 0..grid.width() {
         for y in 0..grid.height() {
-            let value = grid.get(x, y);
+            let position = Point::at(x, y);
 
-            if !grid.get_4_neighbours(x, y).iter().any(|n| *n <= value) {
-                lowpoints.push(Point::at(x, y));
+            let value = grid.get(position);
+
+            if !grid.get_4_neighbours(position).iter().any(|n| *n <= value) {
+                lowpoints.push(position);
             }
         }
     }
@@ -61,7 +64,7 @@ fn basin(grid: &Grid<u8>, lowpoint: Point) -> usize {
         visited.insert(next);
 
         for n in get_4_neighbour_points(next) {
-            if grid.is_in_grid(n.x, n.y) && grid.get(n.x, n.y) != 9 {
+            if grid.is_in_grid(n) && grid.get(n) != 9 {
                 deque.push_back(n)
             }
         }
