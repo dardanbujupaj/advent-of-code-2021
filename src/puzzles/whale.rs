@@ -1,7 +1,7 @@
 use std::cmp::min;
 
 /// Run Simulation for day 7 'whale' of Advent of Code
-/// https://adventofcode.com/2021/day/7
+/// <https://adventofcode.com/2021/day/7>
 pub fn whale(input: String) {
     println!("Optimizing whale ...");
     println!("Input: {}", input);

@@ -1,6 +1,6 @@
 use clap::Parser;
 
-use advent_of_code_2021::puzzles::{
+use aoc::puzzles::{
     binary_diagnostic, dive, dumbo_octopus, extended_polymerization, hydrothermal_venture,
     lanternfish, seven_segment, smoke_basin, sonar_sweep, syntax_scoring, whale,
 };

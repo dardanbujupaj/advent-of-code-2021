@@ -58,7 +58,7 @@ impl Display for School {
 }
 
 /// Run Simulation for day 6 'lanternfish' of Advent of Code
-/// https://adventofcode.com/2021/day/6
+/// <https://adventofcode.com/2021/day/6>
 pub fn lanternfish(input: String) {
     println!("Simulating lanternfish...");
     println!("Input: {}", input);
