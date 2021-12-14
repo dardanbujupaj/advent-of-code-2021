@@ -5,16 +5,16 @@
 /// # Examples
 ///
 /// ```
-/// use aoc::timed;
+/// use aoc::time;
 ///
 /// // Prints '🚀 Print text: 42ns'
-/// let result = timed!("Print text", 1 + 2);
+/// let result = time!("Print text", 1 + 2);
 /// assert_eq!(result, 3);
 ///
 /// ```
 ///
 #[macro_export]
-macro_rules! timed {
+macro_rules! time {
     ( $n:literal, $x:expr ) => {{
         let start = std::time::Instant::now();
         let result = $x;
