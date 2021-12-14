@@ -1,14 +1,18 @@
-use std::{collections::HashMap, time::Instant};
+use crate::timed;
+use std::collections::HashMap;
 
 type Rules = HashMap<(char, char), char>;
 
 pub fn extended_polymerization(input: String) {
     println!("Processing polymerization");
-    println!("Polymer difference {} (Part 1)", part1(&input));
-    let start = Instant::now();
-    let part_2 = part2(&input);
-    let time = start.elapsed();
-    println!("Polymer difference {} (Part 2) {:?}", part_2, time);
+    println!(
+        "Polymer difference {} (Part 1)",
+        timed!("Part 1", part1(&input))
+    );
+    println!(
+        "Polymer difference {} (Part 2)",
+        timed!("Part 2", part2(&input))
+    );
 }
 
 fn part1(input: &str) -> isize {
