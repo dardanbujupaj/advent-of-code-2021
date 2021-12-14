@@ -1,6 +1,7 @@
 mod binary_diagnostic;
 mod dive;
 mod dumbo_octopus;
+mod extended_polymerization;
 mod hydrothermal_venture;
 mod lanternfish;
 mod seven_segment;
@@ -20,3 +21,4 @@ pub use syntax_scoring::syntax_scoring;
 pub use whale::whale;
 
 pub use dumbo_octopus::dumbo_octopus;
+pub use extended_polymerization::extended_polymerization;

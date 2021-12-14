@@ -1,8 +1,8 @@
 use clap::Parser;
 
 use advent_of_code_2021::puzzles::{
-    binary_diagnostic, dive, dumbo_octopus, hydrothermal_venture, lanternfish, seven_segment,
-    smoke_basin, sonar_sweep, syntax_scoring, whale,
+    binary_diagnostic, dive, dumbo_octopus, extended_polymerization, hydrothermal_venture,
+    lanternfish, seven_segment, smoke_basin, sonar_sweep, syntax_scoring, whale,
 };
 
 #[derive(Parser)]
@@ -26,6 +26,7 @@ fn main() {
         9 => smoke_basin(opts.input),
         10 => syntax_scoring(opts.input),
         11 => dumbo_octopus(opts.input),
+        14 => extended_polymerization(opts.input),
         _ => unimplemented!(),
     }
 }

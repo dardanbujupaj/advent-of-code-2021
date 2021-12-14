@@ -94,9 +94,13 @@ where
     fn fmt(&self, f: &mut std::fmt::Formatter<'_>) -> std::fmt::Result {
         for y in 0..self.height {
             for x in 0..self.width {
-                write!(f, "{}", self.get(Point::at(x, y)));
+                if let Err(err) = write!(f, "{}", self.get(Point::at(x, y))) {
+                    return Err(err);
+                }
             }
-            writeln!(f);
+            if let Err(err) = writeln!(f) {
+                return Err(err);
+            }
         }
         writeln!(f)
     }
