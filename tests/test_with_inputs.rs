@@ -2,7 +2,7 @@ use std::{env, fs};
 
 use aoc::puzzles::{
     binary_diagnostic, dive, dumbo_octopus, extended_polymerization, hydrothermal_venture,
-    lanternfish, seven_segment, smoke_basin, sonar_sweep, syntax_scoring, whale,
+    lanternfish, seven_segment, smoke_basin, sonar_sweep, syntax_scoring, whale, packet_decoder, chiton,
 };
 
 // this tests check if all solutions run through (without panic) with the example and actual input
@@ -144,4 +144,24 @@ fn test_extended_polymerization_example_input() {
 fn test_extended_polymerization_input() {
     let input = read_input_file("extended_polymerization.txt");
     extended_polymerization(input);
+}
+
+#[test]
+fn test_chiton_example_input() {
+    let input = read_input_file("chiton_example.txt");
+    chiton(input);
+}
+
+/* disabled because it takes to long
+#[test]
+fn test_chiton_input() {
+    let input = read_input_file("chiton.txt");
+    chiton(input);
+}
+*/
+
+#[test]
+fn test_packet_decoder_input() {
+    let input = read_input_file("packet_decoder.txt");
+    packet_decoder(input);
 }

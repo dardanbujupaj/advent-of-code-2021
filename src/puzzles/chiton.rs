@@ -43,8 +43,8 @@ fn djikstra(grid: &Grid<usize>, from: Point, to: Point) -> usize {
 
     loop {
         let min = risk_map.iter().min_by_key(|p| p.1).unwrap();
-        let point = min.0.clone();
-        let risk = min.1.clone();
+        let point = *min.0;
+        let risk = *min.1;
 
         if point == to {
             break risk;
@@ -79,7 +79,6 @@ fn parse_input(input: &str, scale: usize) -> Grid<usize> {
         .map(|c| c.parse().unwrap())
         .collect();
 
-
     let mut grid = Grid::with_data(width as isize, height as isize, data.repeat(scale));
 
     for x in 0..width {
@@ -89,7 +88,7 @@ fn parse_input(input: &str, scale: usize) -> Grid<usize> {
             let mut value = grid.get(Point::at(x as isize, y as isize)) + sx + sy;
             if value > 9 {
                 value = value % 10 + 1;
-            } 
+            }
 
             grid.set(Point::at(x as isize, y as isize), value);
         }

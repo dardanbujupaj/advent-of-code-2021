@@ -5,6 +5,7 @@ mod dumbo_octopus;
 mod extended_polymerization;
 mod hydrothermal_venture;
 mod lanternfish;
+mod packet_decoder;
 mod seven_segment;
 mod smoke_basin;
 mod sonar_sweep;
@@ -24,3 +25,5 @@ pub use whale::whale;
 pub use chiton::chiton;
 pub use dumbo_octopus::dumbo_octopus;
 pub use extended_polymerization::extended_polymerization;
+
+pub use packet_decoder::packet_decoder;
