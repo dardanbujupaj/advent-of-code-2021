@@ -1,12 +1,16 @@
 use std::collections::{HashSet, VecDeque};
 
-use crate::util::{Grid, Point};
+use crate::{
+    include_input,
+    util::{Grid, Point},
+};
 
-pub fn smoke_basin(input: String) {
+pub fn smoke_basin() {
     println!("Scanning lava tubes...");
 
-    println!("Sum of low points (Part 1): {}", part1(&input));
-    println!("Sum of basin sizes (Part 2): {}", part2(&input));
+    let input = include_input!("smoke_basin");
+    println!("Sum of low points (Part 1): {}", part1(input));
+    println!("Sum of basin sizes (Part 2): {}", part2(input));
 }
 
 fn part1(input: &str) -> usize {

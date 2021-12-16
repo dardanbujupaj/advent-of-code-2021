@@ -1,17 +1,18 @@
 use std::collections::HashMap;
 
-use crate::time;
 use crate::util::{Grid, Point};
+use crate::{include_input, time};
 
-pub fn chiton(input: String) {
+pub fn chiton() {
     println!("Calculating risk...");
+    let input = include_input!("chiton");
     println!(
         "Total risk level {} (Part 1)",
-        time!("Part 1", part1(&input))
+        time!("Part 1", part1(input))
     );
     println!(
         "Total risk level {} (Part 2)",
-        time!("Part 2", part2(&input))
+        time!("Part 2", part2(input))
     );
 }
 

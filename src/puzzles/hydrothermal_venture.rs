@@ -1,9 +1,15 @@
-use crate::util::{Grid, Line, Point};
+use crate::{
+    include_input,
+    util::{Grid, Line, Point},
+};
 
-pub fn hydrothermal_venture(input: String) {
+pub fn hydrothermal_venture() {
     println!("Mapping vents...");
-    println!("{} dangerous areas (Part 1)", part1(&input));
-    println!("{} diagonal dangerous areas (Part 2)", part2(&input));
+
+    let input = include_input!("hydrothermal_venture");
+
+    println!("{} dangerous areas (Part 1)", part1(input));
+    println!("{} diagonal dangerous areas (Part 2)", part2(input));
 }
 
 fn part1(input: &str) -> usize {
@@ -20,8 +26,6 @@ fn part1(input: &str) -> usize {
         grid.set(point, grid.get(point) + 1);
     }
 
-    println!("{}", grid);
-
     grid.data().iter().filter(|v| **v >= 2).count()
 }
 
@@ -37,8 +41,6 @@ fn part2(input: &str) -> usize {
     for point in points {
         grid.set(point, grid.get(point) + 1);
     }
-
-    println!("{}", grid);
 
     grid.data().iter().filter(|v| **v >= 2).count()
 }

@@ -23,3 +23,11 @@ macro_rules! time {
         result
     }};
 }
+
+/// import one of the inputs from the inputs folder
+#[macro_export]
+macro_rules! include_input {
+    ( $n:literal ) => {{
+        include_str!(concat!(env!("CARGO_MANIFEST_DIR"), "/inputs/", $n, ".txt"))
+    }};
+}

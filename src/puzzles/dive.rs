@@ -1,7 +1,10 @@
 use std::ops::{Add, AddAssign};
 
-pub fn dive(input: String) {
+use crate::include_input;
+
+pub fn dive() {
     println!("Parsing commands...");
+    let input = include_input!("dive");
     // println!("Input: {}", input);
 
     let positions = parse_input(input);
@@ -26,7 +29,7 @@ pub fn dive(input: String) {
     println!("Distance (Part 2): {:?}", position2.distance());
 }
 
-fn parse_input(input: String) -> Vec<Position> {
+fn parse_input(input: &str) -> Vec<Position> {
     input.lines().map(Position::parse).collect()
 }
 
@@ -117,8 +120,7 @@ mod tests {
     fn test_parse_input() {
         let input = "up 10
       down 10
-      forward 3"
-            .to_string();
+      forward 3";
 
         let positions = vec![
             Position { x: 0, y: -10 },

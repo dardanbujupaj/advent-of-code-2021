@@ -1,17 +1,19 @@
-use crate::time;
+use crate::{include_input, time};
 use std::collections::HashMap;
 
 type Rules = HashMap<(char, char), char>;
 
-pub fn extended_polymerization(input: String) {
+pub fn extended_polymerization() {
     println!("Processing polymerization");
+
+    let input = include_input!("extended_polymerization");
     println!(
         "Polymer difference {} (Part 1)",
-        time!("Part 1", part1(&input))
+        time!("Part 1", part1(input))
     );
     println!(
         "Polymer difference {} (Part 2)",
-        time!("Part 2", part2(&input))
+        time!("Part 2", part2(input))
     );
 }
 

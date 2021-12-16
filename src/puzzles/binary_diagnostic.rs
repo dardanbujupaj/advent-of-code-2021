@@ -1,5 +1,8 @@
-pub fn binary_diagnostic(input: String) {
+use crate::include_input;
+
+pub fn binary_diagnostic() {
     println!("Running diagnostics...");
+    let input = include_input!("sonar_sweep");
 
     let mut counter = BitCounter::new();
 

@@ -1,10 +1,12 @@
 use std::cmp::min;
 
+use crate::include_input;
+
 /// Run Simulation for day 7 'whale' of Advent of Code
 /// <https://adventofcode.com/2021/day/7>
-pub fn whale(input: String) {
+pub fn whale() {
     println!("Optimizing whale ...");
-    println!("Input: {}", input);
+    let input = include_input!("whale");
 
     let positions = parse_input(input);
 
@@ -15,7 +17,7 @@ pub fn whale(input: String) {
 }
 
 /// Parse the input to a Vec<isize>
-fn parse_input(input: String) -> Vec<isize> {
+fn parse_input(input: &str) -> Vec<isize> {
     input
         .split(',')
         .map(|x| x.parse::<isize>().unwrap())
@@ -97,8 +99,13 @@ mod tests {
     use super::*;
 
     #[test]
+    fn test_with_input() {
+        whale();
+    }
+
+    #[test]
     fn test_example() {
-        let input = "16,1,2,0,4,2,7,1,2,14".to_string();
+        let input = "16,1,2,0,4,2,7,1,2,14";
 
         let positions = parse_input(input);
 

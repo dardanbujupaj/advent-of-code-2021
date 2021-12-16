@@ -1,5 +1,7 @@
 use std::fmt::Display;
 
+use crate::include_input;
+
 const CYCLE_DAYS: usize = 7;
 const NEW_DAYS: usize = CYCLE_DAYS + 2;
 
@@ -10,7 +12,7 @@ struct School {
 
 impl School {
     /// Create new School struct by parsting the input string
-    fn parse(input: String) -> Self {
+    fn parse(input: &str) -> Self {
         let fishes = input.split(',');
 
         let mut ages = [0; NEW_DAYS];
@@ -59,9 +61,10 @@ impl Display for School {
 
 /// Run Simulation for day 6 'lanternfish' of Advent of Code
 /// <https://adventofcode.com/2021/day/6>
-pub fn lanternfish(input: String) {
+pub fn lanternfish() {
     println!("Simulating lanternfish...");
-    println!("Input: {}", input);
+
+    let input = include_input!("lanternfish");
     let mut school = School::parse(input);
     println!("{}", school);
 
@@ -84,14 +87,14 @@ mod tests {
 
     #[test]
     fn test_count() {
-        let input = "0,1,1,2,2,2,3,3,3,3".to_string();
+        let input = "0,1,1,2,2,2,3,3,3,3";
         let s = School::parse(input);
         assert_eq!(s.count(), 10);
     }
 
     #[test]
     fn test_iterate_days() {
-        let mut s = School::parse("1".to_string());
+        let mut s = School::parse("1");
         assert_eq!(s.day, 0);
 
         s.iterate();
@@ -101,7 +104,7 @@ mod tests {
 
     #[test]
     fn test_iterate_age() {
-        let mut s = School::parse("1".to_string());
+        let mut s = School::parse("1");
         assert_eq!(s.ages[0], 0);
         assert_eq!(s.ages[1], 1);
 
@@ -119,7 +122,7 @@ mod tests {
 
     #[test]
     fn test_parse_input() {
-        let input = "0,2,3,4,5".to_string();
+        let input = "0,2,3,4,5";
         let s = School::parse(input);
 
         assert_eq!(s.count(), 5);
@@ -128,7 +131,7 @@ mod tests {
 
     #[test]
     fn test_example() {
-        let input = "3,4,3,1,2".to_string();
+        let input = "3,4,3,1,2";
 
         let mut s = School::parse(input);
 

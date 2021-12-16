@@ -1,7 +1,11 @@
-pub fn syntax_scoring(input: String) {
+use crate::include_input;
+
+pub fn syntax_scoring() {
     println!("Checking syntax...");
-    println!("Error score {}! (Part 1)", part1(&input));
-    println!("Completion score {}! (Part 2)", part2(&input));
+
+    let input = include_input!("syntax_scoring");
+    println!("Error score {}! (Part 1)", part1(input));
+    println!("Completion score {}! (Part 2)", part2(input));
 }
 
 #[derive(Debug)]
@@ -119,32 +123,19 @@ mod tests {
     use super::*;
 
     #[test]
+    fn test_solution() {
+        syntax_scoring();
+    }
+
+    #[test]
     fn test_part_1() {
-        let input = "[({(<(())[]>[[{[]{<()<>>
-[(()[<>])]({[<{<<[]>>(
-{([(<{}[<>[]}>{[]{[(<()>
-(((({<>}<{<{<>}{[]{[]{}
-[[<[([]))<([[{}[[()]]]
-[{[{({}]{}}([{[{{{}}([]
-{<[[]]>}<{[{[{[]{()[[[]
-[<(<(<(<{}))><([]([]()
-<{([([[(<>()){}]>(<<{{
-<{([{{}}[<[[[<>{}]]]>[]]";
+        let input = include_input!("syntax_scoring_example");
         assert_eq!(part1(input), 26397);
     }
 
     #[test]
     fn test_part_2() {
-        let input = "[({(<(())[]>[[{[]{<()<>>
-[(()[<>])]({[<{<<[]>>(
-{([(<{}[<>[]}>{[]{[(<()>
-(((({<>}<{<{<>}{[]{[]{}
-[[<[([]))<([[{}[[()]]]
-[{[{({}]{}}([{[{{{}}([]
-{<[[]]>}<{[{[{[]{()[[[]
-[<(<(<(<{}))><([]([]()
-<{([([[(<>()){}]>(<<{{
-<{([{{}}[<[[[<>{}]]]>[]]";
+        let input = include_input!("syntax_scoring_example");
         assert_eq!(part2(input), 288957);
     }
 }

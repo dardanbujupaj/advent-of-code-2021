@@ -1,9 +1,12 @@
 use std::collections::HashSet;
 
-pub fn seven_segment(input: String) {
+use crate::include_input;
+
+pub fn seven_segment() {
     println!("Counting segments");
-    println!("Count 1,4,7,8 (Part 1): {}", part_1(&input));
-    println!("Sum up outputs (Part 2): {}", part_2(&input));
+    let input = include_input!("seven_segment");
+    println!("Count 1,4,7,8 (Part 1): {}", part_1(input));
+    println!("Sum up outputs (Part 2): {}", part_2(input));
 }
 
 /// count 1, 4, 7, 8

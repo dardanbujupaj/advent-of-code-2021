@@ -1,9 +1,11 @@
-use crate::time;
+use crate::{include_input, time};
 
-pub fn packet_decoder(input: String) {
+pub fn packet_decoder() {
     println!("Decoding packets...");
-    println!("Version sum: {} (Part 1)", time!("Part 1", part1(&input)));
-    println!("Value: {} (Part 2)", time!("Part 2", part2(&input)));
+    let input = include_input!("packet_decoder");
+
+    println!("Version sum: {} (Part 1)", time!("Part 1", part1(input)));
+    println!("Value: {} (Part 2)", time!("Part 2", part2(input)));
 }
 
 fn part1(input: &str) -> usize {
@@ -100,8 +102,6 @@ impl Packet {
             (actual_length, value, sub_packets)
         };
 
-        
-
         Packet {
             version,
             type_id,
@@ -176,6 +176,11 @@ fn decode_message(input: &str) -> Packet {
 mod tests {
     use super::*;
 
+    #[test]
+    fn test_solution() {
+        packet_decoder();
+    }
+
     #[should_panic]
     #[test]
     fn test_hex2bin() {
@@ -213,6 +218,7 @@ mod tests {
         assert_eq!(part1("C0015000016115A2E0802F182340"), 23);
         assert_eq!(part1("A0016C880162017C3686B18A3D4780"), 31);
     }
+
     #[test]
     fn test_part_2() {
         assert_eq!(part2("C200B40A82"), 3);

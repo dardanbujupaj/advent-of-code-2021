@@ -1,4 +1,8 @@
-pub fn sonar_sweep(input: String) {
+use crate::include_input;
+
+pub fn sonar_sweep() {
+    let input = include_input!("sonar_sweep");
+
     println!("Analyzing sonar sweep...");
     println!("Input: {}", input);
 
@@ -30,7 +34,7 @@ fn count_increases(measurements: &[isize]) -> isize {
     count
 }
 
-fn parse_input(input: String) -> Vec<isize> {
+fn parse_input(input: &str) -> Vec<isize> {
     input
         .split_whitespace()
         .map(|x| x.parse::<isize>().unwrap())
@@ -58,7 +62,7 @@ mod tests {
 
     #[test]
     fn test_parse() {
-        let input = EXAMPLE_INPUT.to_string();
+        let input = EXAMPLE_INPUT;
 
         assert_eq!(get_example_measurements(), parse_input(input));
     }
