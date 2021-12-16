@@ -1,4 +1,5 @@
 mod binary_diagnostic;
+mod chiton;
 mod dive;
 mod dumbo_octopus;
 mod extended_polymerization;
@@ -20,5 +21,6 @@ pub use sonar_sweep::sonar_sweep;
 pub use syntax_scoring::syntax_scoring;
 pub use whale::whale;
 
+pub use chiton::chiton;
 pub use dumbo_octopus::dumbo_octopus;
 pub use extended_polymerization::extended_polymerization;

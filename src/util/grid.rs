@@ -71,6 +71,25 @@ where
         neigbours
     }
 
+    /// Get 4 neighbours as Points
+    pub fn get_4_neighbours_p(&self, position: Point) -> Vec<Point> {
+        let mut neigbours = Vec::new();
+        if position.x > 0 {
+            neigbours.push(position + Point::at(-1, 0))
+        }
+        if position.x < self.width - 1 {
+            neigbours.push(position + Point::at(1, 0))
+        }
+        if position.y > 0 {
+            neigbours.push(position + Point::at(0, -1))
+        }
+        if position.y < self.height - 1 {
+            neigbours.push(position + Point::at(0, 1))
+        }
+
+        neigbours
+    }
+
     pub fn get_8_neighbours(&self, position: Point) -> Vec<Point> {
         let mut neigbours = Vec::new();
         for nx in (position.x - 1)..=(position.x + 1) {

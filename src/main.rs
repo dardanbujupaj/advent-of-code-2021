@@ -1,7 +1,7 @@
 use clap::Parser;
 
 use aoc::puzzles::{
-    binary_diagnostic, dive, dumbo_octopus, extended_polymerization, hydrothermal_venture,
+    binary_diagnostic, chiton, dive, dumbo_octopus, extended_polymerization, hydrothermal_venture,
     lanternfish, seven_segment, smoke_basin, sonar_sweep, syntax_scoring, whale,
 };
 
@@ -27,6 +27,7 @@ fn main() {
         10 => syntax_scoring(opts.input),
         11 => dumbo_octopus(opts.input),
         14 => extended_polymerization(opts.input),
+        15 => chiton(opts.input),
         _ => unimplemented!(),
     }
 }
