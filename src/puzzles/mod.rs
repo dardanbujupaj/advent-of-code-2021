@@ -10,6 +10,7 @@ mod seven_segment;
 mod smoke_basin;
 mod sonar_sweep;
 mod syntax_scoring;
+mod trick_shot;
 mod whale;
 
 pub use binary_diagnostic::binary_diagnostic;
@@ -27,3 +28,4 @@ pub use dumbo_octopus::dumbo_octopus;
 pub use extended_polymerization::extended_polymerization;
 
 pub use packet_decoder::packet_decoder;
+pub use trick_shot::trick_shot;
