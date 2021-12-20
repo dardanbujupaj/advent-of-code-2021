@@ -1,4 +1,4 @@
-use crate::{include_input, time, util::Point, gauss};
+use crate::{gauss, include_input, time, util::Point};
 
 pub fn trick_shot() {
     println!(

@@ -26,6 +26,7 @@ fn main() {
         15 => chiton(),
         16 => packet_decoder(),
         17 => trick_shot(),
+        20 => trench_map(),
         _ => unimplemented!(),
     }
 }

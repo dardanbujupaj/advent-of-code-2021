@@ -36,13 +36,12 @@ macro_rules! include_input {
 macro_rules! gauss {
     ( $n:expr ) => {
         $n * ($n + 1) / 2
-    }
+    };
 }
-
 
 #[cfg(test)]
 mod tests {
-    use super::*;
+    
 
     #[test]
     fn test_gauss() {
