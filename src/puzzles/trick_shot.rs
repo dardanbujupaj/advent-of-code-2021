@@ -1,4 +1,4 @@
-use crate::{include_input, time, util::Point};
+use crate::{include_input, time, util::Point, gauss};
 
 pub fn trick_shot() {
     println!(
@@ -21,9 +21,9 @@ struct Area {
 
 fn part1(input: &str) -> isize {
     let area = parse_input(input);
-    let vy = -area.from_y - 1;
+    let y = -area.from_y - 1;
 
-    vy * (vy + 1) / 2
+    gauss!(y)
 }
 
 /// 1. calculate which x-velocity values converge in the target x range. For these you can be sure that every y value in the target area mirrored around the x axis (-1) is a hit (we already learned that by solving part 1 analytically)

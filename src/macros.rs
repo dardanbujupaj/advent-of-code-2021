@@ -31,3 +31,21 @@ macro_rules! include_input {
         include_str!(concat!(env!("CARGO_MANIFEST_DIR"), "/inputs/", $n, ".txt"))
     }};
 }
+
+#[macro_export]
+macro_rules! gauss {
+    ( $n:expr ) => {
+        $n * ($n + 1) / 2
+    }
+}
+
+
+#[cfg(test)]
+mod tests {
+    use super::*;
+
+    #[test]
+    fn test_gauss() {
+        assert_eq!(gauss!(5), 1 + 2 + 3 + 4 + 5)
+    }
+}
