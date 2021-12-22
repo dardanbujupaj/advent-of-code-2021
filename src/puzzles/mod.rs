@@ -1,5 +1,6 @@
 mod binary_diagnostic;
 mod chiton;
+mod dirac_dice;
 mod dive;
 mod dumbo_octopus;
 mod extended_polymerization;
@@ -29,5 +30,6 @@ pub use chiton::chiton;
 pub use dumbo_octopus::dumbo_octopus;
 pub use extended_polymerization::extended_polymerization;
 
+pub use dirac_dice::dirac_dice;
 pub use packet_decoder::packet_decoder;
 pub use trick_shot::trick_shot;

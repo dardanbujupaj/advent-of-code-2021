@@ -27,6 +27,7 @@ fn main() {
         16 => packet_decoder(),
         17 => trick_shot(),
         20 => trench_map(),
+        21 => dirac_dice(),
         _ => unimplemented!(),
     }
 }

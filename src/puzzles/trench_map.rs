@@ -1,5 +1,3 @@
-
-
 use crate::{
     include_input, time,
     util::{Grid, Point},
