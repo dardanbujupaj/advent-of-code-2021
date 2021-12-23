@@ -7,6 +7,7 @@ mod extended_polymerization;
 mod hydrothermal_venture;
 mod lanternfish;
 mod packet_decoder;
+mod reactor_reboot;
 mod seven_segment;
 mod smoke_basin;
 mod sonar_sweep;
@@ -32,4 +33,5 @@ pub use extended_polymerization::extended_polymerization;
 
 pub use dirac_dice::dirac_dice;
 pub use packet_decoder::packet_decoder;
+pub use reactor_reboot::reactor_reboot;
 pub use trick_shot::trick_shot;

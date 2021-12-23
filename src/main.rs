@@ -28,6 +28,7 @@ fn main() {
         17 => trick_shot(),
         20 => trench_map(),
         21 => dirac_dice(),
+        22 => reactor_reboot(),
         _ => unimplemented!(),
     }
 }

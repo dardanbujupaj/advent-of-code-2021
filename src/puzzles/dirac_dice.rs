@@ -40,7 +40,7 @@ fn part1(input: &str) -> usize {
     loser_score * die.rolls
 }
 
-fn part2(input: &str) -> usize {
+fn part2(_input: &str) -> usize {
     /*
     let mut next_player = 1;
     let mut die = DeterministicDie::new();
