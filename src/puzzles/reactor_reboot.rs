@@ -1,7 +1,4 @@
-use std::{
-    collections::HashSet,
-    ops::{Range, RangeInclusive},
-};
+use std::{collections::HashSet, ops::RangeInclusive};
 
 use regex::Regex;
 
@@ -21,10 +18,14 @@ pub fn reactor_reboot() {
 fn part1(input: &str) -> usize {
     let mut active_cells: HashSet<Position> = HashSet::new();
     let instructions = parse_input(input);
-    let actual_cuboid = Cuboid {x_range: -50..=50, y_range: -50..=50,z_range: -50..=50  };
+    let actual_cuboid = Cuboid {
+        x_range: -50..=50,
+        y_range: -50..=50,
+        z_range: -50..=50,
+    };
 
     for (cuboid, on) in instructions {
-      let union_cube = actual_cuboid.union(&cuboid);
+        let union_cube = actual_cuboid.union(&cuboid);
 
         for x in union_cube.x_range.clone() {
             for y in union_cube.y_range.clone() {

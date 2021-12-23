@@ -40,6 +40,7 @@ fn part1(input: &str) -> usize {
     loser_score * die.rolls
 }
 
+#[allow(dead_code)]
 fn part2(_input: &str) -> usize {
     /*
     let mut next_player = 1;
